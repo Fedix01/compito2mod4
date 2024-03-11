@@ -11,7 +11,7 @@ export default function Select({ onGenreChange }) {
     }
     return (
         <>
-            <div className='d-flex'>
+            <div className='d-flex justify-content-around'>
                 <Form.Select aria-label="Default select example" ref={inputRef} style={{ width: "300px" }}>
                     <option>Select a book genre</option>
                     <option value="horror">Horror</option>
@@ -21,7 +21,7 @@ export default function Select({ onGenreChange }) {
                     <option value="history">History</option>
 
                 </Form.Select>
-                <Button variant="outline-success" onClick={takeValue}>Success</Button>
+                <Button variant="outline-warning" onClick={takeValue}>Search</Button>
             </div>
         </>
     );

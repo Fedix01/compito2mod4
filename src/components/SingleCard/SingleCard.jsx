@@ -1,13 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
-import "./SingleCard.css"
+import "./SingleCard.css";
+import { FaStar } from 'react-icons/fa';
 
 export default function SingleCard(props) {
-    console.log(props)
     const { asin, title, img, price, category } = props;
-    console.log(asin)
+
+    const [add, setAdd] = useState(false);
+
+    function handleAdd() {
+        setAdd(!add)
+    }
     return (
 
         <Col md={3} sm={6}>
@@ -20,7 +25,17 @@ export default function SingleCard(props) {
                         <br />
                         {category}
                     </Card.Text>
-                    <Button variant="primary">Go somewhere</Button>
+                    <Button variant="warning" onClick={handleAdd} >
+                        {!add && (
+                            <FaStar
+                                style={{
+                                    marginRight: "8px",
+                                    color: "black",
+                                    marginBottom: "4px"
+                                }}
+                            />
+                        )}
+                        {add ? "Added!" : "Add"}</Button>
                 </Card.Body>
             </Card>
         </Col>
