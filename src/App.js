@@ -1,6 +1,6 @@
 import './App.css';
 import { useState } from 'react';
-import BooksTemplate from './components/BooksTemplate/BooksTemplate';
+import AllTheBooks from './components/AllTheBooks/AllTheBooks';
 import MyFooter from './components/MyFooter/MyFooter';
 import MyNavbar from './components/MyNavbar/MyNavbar';
 import Welcome from './components/Welcome/Welcome';
@@ -32,7 +32,7 @@ function App() {
       <MyNavbar />
       <Welcome />
       <Select onGenreChange={handleGenreChange} />
-      <BooksTemplate books={selectedData} />
+      <AllTheBooks books={selectedData} />
       <MyFooter />
     </>
   );

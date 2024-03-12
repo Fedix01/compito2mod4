@@ -1,27 +1,22 @@
-import React, { useState } from 'react';
-import Alert from 'react-bootstrap/Alert';
+import React from 'react';
 import { Button } from 'react-bootstrap';
+import "./Welcome.css"
 function Welcome() {
-    const [show, setShow] = useState(true);
 
     return (
         <>
-            <Alert show={show} variant="success">
-                <Alert.Heading>My Alert</Alert.Heading>
-                <p>
-                    Duis mollis, est non commodo luctus, nisi erat porttitor ligula, eget
-                    lacinia odio sem nec elit. Cras mattis consectetur purus sit amet
-                    fermentum.
-                </p>
-                <hr />
-                <div className="d-flex justify-content-end">
-                    <Button onClick={() => setShow(false)} variant="outline-success">
-                        Close me
-                    </Button>
+            <div className='jumbotron'>
+                <div className='jumbo-content'>
+                    <h1 className='fw-bold'>Benvenuto in Epibooks</h1>
+                    <p>
+                        This is a simple hero unit, a simple jumbotron-style component for calling
+                        extra attention to featured content or information.
+                    </p>
+                    <p>
+                        <Button variant="primary">Learn more</Button>
+                    </p>
                 </div>
-            </Alert>
-
-            {!show && <Button onClick={() => setShow(true)}>Show Alert</Button>}
+            </div>
         </>
     );
 }

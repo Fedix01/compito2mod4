@@ -1,0 +1,15 @@
+.jumbotron {
+    background-color: lightgray;
+    height: 300px;
+    padding: 20px;
+    background-image: url('https://manybooks.net/sites/default/files/2018-07/bookstackssmall.jpg');
+    background-size: contain;
+
+}
+
+.jumbo-content {
+    text-align: center;
+    color: white;
+    font-size: 30px;
+    margin: 0 400px;
+}

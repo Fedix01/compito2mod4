@@ -5,13 +5,13 @@ export default function Select({ onGenreChange }) {
     const inputRef = useRef(null);
 
     function takeValue() {
-        const sleectedValue = inputRef.current.value;
-        console.log(sleectedValue)
-        onGenreChange(sleectedValue)
+        const selectedValue = inputRef.current.value;
+        console.log(selectedValue);
+        onGenreChange(selectedValue);
     }
     return (
         <>
-            <div className='d-flex justify-content-around'>
+            <div className='d-flex justify-content-around' style={{ backgroundColor: "#212529", padding: "30px" }}>
                 <Form.Select aria-label="Default select example" ref={inputRef} style={{ width: "300px" }}>
                     <option>Select a book genre</option>
                     <option value="horror">Horror</option>
