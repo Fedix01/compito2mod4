@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Form from 'react-bootstrap/Form';
@@ -16,6 +16,11 @@ export default function AllTheBooks(props) {
         const filteredName = allBooks.filter((book) => book.title.toLowerCase().includes(name.toLowerCase()));
         setFilteredBooks(filteredName);
     }
+
+    useEffect(() => {
+        setFilteredBooks(allBooks);
+    }, [allBooks]);
+
     return (
         <>
             <Container>
@@ -23,7 +28,7 @@ export default function AllTheBooks(props) {
                     <Form.Control type="text" placeholder="Inserisci il titolo" value={inputName} onChange={(e) => setInputName(e.target.value)}
                         style={{ width: "50%" }} />
                     <Button variant="primary" size="lg" onClick={() => handleName(inputName)}>
-                        Cerca
+                        Cerca per titolo
                     </Button>
                 </div>
                 <Row>
