@@ -3,38 +3,35 @@ import { Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import "./SingleBook.css";
-import { FaStar } from 'react-icons/fa';
+import CommentArea from '../CommentArea/CommentArea';
 
 export default function SingleBook(props) {
     const { asin, title, img, price, category } = props;
 
 
-    const [add, setAdd] = useState(false);
+    const [selected, setSelected] = useState(false);
 
     return (
 
         <Col md={3} sm={6}>
-            <Card className="card mt-3" onClick={() => setAdd(!add)} id={asin}
-                style={{ border: add ? "2px solid red" : "none" }}>
+            <Card className="card mt-3" id={asin}
+                style={{ border: selected ? "2px solid red" : "none" }}>
                 <Card.Img variant="top" className="card-img" src={img} />
                 <Card.Body>
                     <Card.Title className="card-title">{title}</Card.Title>
-                    <Card.Text>
+
+                    <div>
                         ${price}
                         <br />
                         {category}
-                    </Card.Text>
-                    <Button variant="warning" onClick={() => setAdd(!add)} >
-                        {!add && (
-                            <FaStar
-                                style={{
-                                    marginRight: "8px",
-                                    color: "black",
-                                    marginBottom: "4px"
-                                }}
-                            />
-                        )}
-                        {add ? "Added!" : "Add"}</Button>
+                    </div>
+                    <div>
+                        {selected &&
+                            <CommentArea />}
+                        {selected ? <Button variant="warning" onClick={() => setSelected(!selected)}>Chiudi</Button> : <Button variant="warning" onClick={() => setSelected(!selected)}>Aggiungi</Button>}
+
+                    </div>
+
                 </Card.Body>
             </Card>
         </Col>
