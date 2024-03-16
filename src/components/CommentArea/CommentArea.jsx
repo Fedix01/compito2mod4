@@ -2,18 +2,14 @@ import React, { useEffect, useState } from 'react'
 import CommentList from '../CommentList/CommentList';
 import AddComment from '../AddComment/AddComment';
 
-export default function CommentArea() {
+export default function CommentArea(props) {
 
+    const { id } = props;
 
-    const endpointGET = "https://striveschool-api.herokuapp.com/api/books/asin:/comments/";
+    const endpointGET = `https://striveschool-api.herokuapp.com/api/books/${id}/comments/`;
     const endpointPOST = "https://striveschool-api.herokuapp.com/api/comments";
 
-    // let payload = {
-    //     "comment": string,
-    //     "rate": string,
-    //     "elementId": string
-    // }
-    let payload
+
     const [data, setData] = useState([]);
 
     async function handleData() {
@@ -40,7 +36,14 @@ export default function CommentArea() {
         }
     }, [])
 
-    async function postComment() {
+    async function postComment(e, input, num) {
+        e.preventDefault();
+        let payload = {
+            "comment": input,
+            "rate": num.toString(),
+            "elementId": id
+        }
+        console.log(payload)
         try {
             const post = await fetch(endpointPOST, {
                 method: "POST",
@@ -50,13 +53,16 @@ export default function CommentArea() {
                 },
                 body: JSON.stringify(payload)
             })
-            const result = await post.json();
-            setData(result)
-            console.log(result)
+            if (post.ok) {
+                handleData()
+            } else {
+                console.log("Errore nella richiesta POST")
+            }
         } catch (error) {
             console.error(error)
         }
     }
+
 
     return (
         <div>
@@ -65,7 +71,7 @@ export default function CommentArea() {
                     data.map((el) => <CommentList key={el.elementId} comments={el.comment} />)}
             </div>
             <div>
-                {data && <AddComment onClick={postComment} />}
+                {data && <AddComment id={id} postComment={postComment} />}
             </div>
         </div>
 

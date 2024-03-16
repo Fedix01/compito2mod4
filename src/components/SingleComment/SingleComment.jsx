@@ -2,10 +2,10 @@ import React from 'react'
 
 export default function SingleComment(props) {
 
-    const { comments } = props;
+    const { commenti } = props;
     return (
         <>
-            <li>{comments}</li>
+            <li>{commenti}</li>
         </>
     )
 }

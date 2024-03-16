@@ -27,7 +27,7 @@ export default function SingleBook(props) {
                     </div>
                     <div>
                         {selected &&
-                            <CommentArea />}
+                            <CommentArea id={asin} />}
                         {selected ? <Button variant="warning" onClick={() => setSelected(!selected)}>Chiudi</Button> : <Button variant="warning" onClick={() => setSelected(!selected)}>Aggiungi</Button>}
 
                     </div>
