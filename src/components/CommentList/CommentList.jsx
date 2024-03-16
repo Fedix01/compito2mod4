@@ -2,12 +2,12 @@ import React from 'react';
 import SingleComment from '../SingleComment/SingleComment';
 
 export default function CommentList(props) {
-    const { key, comments } = props;
+    const { comments, rate } = props;
     return (
         <>
-            <ol>
-                {<SingleComment key={key} commenti={comments} />}
-            </ol>
+            <ul style={{ listStyle: "none" }}>
+                {<SingleComment commenti={comments} rate={rate} />}
+            </ul>
         </>
     )
 }

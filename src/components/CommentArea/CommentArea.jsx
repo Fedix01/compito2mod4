@@ -68,7 +68,7 @@ export default function CommentArea(props) {
         <div>
             <div>
                 {data &&
-                    data.map((el) => <CommentList key={el.elementId} comments={el.comment} />)}
+                    data.map((el) => <CommentList key={el._id} comments={el.comment} rate={el.rate} />)}
             </div>
             <div>
                 {data && <AddComment id={id} postComment={postComment} />}
