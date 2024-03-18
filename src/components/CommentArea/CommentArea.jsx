@@ -19,6 +19,8 @@ export default function CommentArea(props) {
 
     const [put, setPut] = useState(false);
 
+    const [commentId, setCommentId] = useState("")
+
 
     async function handleData() {
         setSpinner(true)
@@ -109,7 +111,7 @@ export default function CommentArea(props) {
         }
         console.log(payload)
         try {
-            const response = await fetch(`${endpointDELETE}${id}`, {
+            const response = await fetch(`${endpointDELETE}${commentId}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
@@ -137,10 +139,10 @@ export default function CommentArea(props) {
                 <span className="visually-hidden">Loading...</span>
             </Spinner> : ""}
                 {data &&
-                    data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
+                    data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} Id={commentId} setId={setCommentId} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
             </div>
             <div>
-                {put ? <ModifyComment id={id} putComment={putComment} /> :
+                {put ? <ModifyComment id={id} onclick={setPut} putComment={putComment} /> :
                     data && <AddComment id={id} postComment={postComment} />}
             </div>
         </div>
