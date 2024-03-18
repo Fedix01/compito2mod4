@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import CommentList from '../CommentList/CommentList';
 import AddComment from '../AddComment/AddComment';
 import Spinner from 'react-bootstrap/Spinner';
+import ModifyComment from '../ModifyComment/ModifyComment';
 
 export default function CommentArea(props) {
 
@@ -14,10 +15,14 @@ export default function CommentArea(props) {
 
 
     const [data, setData] = useState([]);
-    const [spinner, setSpinner] = useState(false)
+    const [spinner, setSpinner] = useState(false);
+
+    const [put, setPut] = useState(false);
+
 
     async function handleData() {
-        setSpinner(false)
+        setSpinner(true)
+
         try {
             const response = await fetch(endpointGET, {
                 headers: {
@@ -28,7 +33,7 @@ export default function CommentArea(props) {
                 const result = await response.json();
                 setData(result)
                 console.log(result)
-                setSpinner(true)
+                setSpinner(false)
             }
         } catch (error) {
             console.error(error)
@@ -89,13 +94,20 @@ export default function CommentArea(props) {
         }
     }
 
-    async function putComment(id, input, num) {
+    function putForm(id) {
+        setPut(true)
+        console.log(id)
+    }
+
+    async function putComment(e, input, num) {
+        e.preventDefault()
 
         let payload = {
             "comment": input,
             "rate": num.toString(),
             "elementId": id
         }
+        console.log(payload)
         try {
             const response = await fetch(`${endpointDELETE}${id}`, {
                 method: "PUT",
@@ -105,10 +117,14 @@ export default function CommentArea(props) {
                 },
                 body: JSON.stringify(payload)
             })
+            const res = response.json();
+            console.log(res)
             if (response.ok) {
                 handleData()
+                setPut(false)
             } else {
                 console.log("Errore nella chimata PUT")
+                setPut(false)
             }
         } catch (error) {
             console.error(error)
@@ -117,12 +133,15 @@ export default function CommentArea(props) {
 
     return (
         <div>
-            <div>
+            <div>{spinner ? <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner> : ""}
                 {data &&
-                    data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} commentId={el._id} comments={el.comment} rate={el.rate} />)}
+                    data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
             </div>
             <div>
-                {data && <AddComment id={id} postComment={postComment} />}
+                {put ? <ModifyComment id={id} putComment={putComment} /> :
+                    data && <AddComment id={id} postComment={postComment} />}
             </div>
         </div>
 
