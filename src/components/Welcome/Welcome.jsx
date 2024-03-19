@@ -5,8 +5,8 @@ function Welcome() {
 
     return (
         <>
-            <div className='jumbotron'>
-                <div className='jumbo-content'>
+            <div className='jumbotron d-flex justify-content-center'>
+                <div className=' container jumbo-content mx-5'>
                     <h1 className='fw-bold'>Benvenuto in Epibooks</h1>
                     <p>
                         This is a simple hero unit, a simple jumbotron-style component for calling

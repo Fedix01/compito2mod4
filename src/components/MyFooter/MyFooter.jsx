@@ -1,9 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ThemeContext } from '../ThemeContextProvider/ThemeContextProvider';
 
 
 export default function MyFooter() {
+
+    const { theme } = useContext(ThemeContext);
+
     return (
-        <footer className="page-footer font-small blue pt-4">
+        <footer className={theme === "dark" ? "page-footer font-small blue pt-4 bg-dark text-light" : "page-footer font-small blue pt-4 bg-light"}>
             <div className="container-fluid text-center text-md-left">
                 <div className="row">
                     <div className="col-md-6 mt-md-0 mt-3">

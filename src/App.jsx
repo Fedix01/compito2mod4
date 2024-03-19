@@ -11,6 +11,7 @@ import sciFiData from "./data/scifi.json";
 import romanceData from "./data/romance.json";
 
 import Select from './components/Select/Select';
+import ThemeContextProvider from './components/ThemeContextProvider/ThemeContextProvider';
 function App() {
   const [selectedGenre, setSelectedGenre] = useState("horror")
   let selectedData = horrorData;
@@ -27,13 +28,21 @@ function App() {
   }
 
   const handleGenreChange = (genre) => setSelectedGenre(genre);
+
+
+  const [inputName, setInputName] = useState("");
+
+
+
   return (
     <>
-      <MyNavbar />
-      <Welcome />
-      <Select onGenreChange={handleGenreChange} />
-      <AllTheBooks books={selectedData} />
-      <MyFooter />
+      <ThemeContextProvider>
+        <MyNavbar input={inputName} setInput={setInputName} />
+        <Welcome />
+        <Select onGenreChange={handleGenreChange} />
+        <AllTheBooks books={selectedData} input={inputName} />
+        <MyFooter />
+      </ThemeContextProvider>
     </>
   );
 }

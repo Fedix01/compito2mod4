@@ -7,7 +7,6 @@ export default function SingleComment(props) {
     const { commenti, rate, deleteComment, commentId, putForm, setId } = props;
 
     function handleId(commentId) {
-
         putForm()
         setId(commentId)
     }

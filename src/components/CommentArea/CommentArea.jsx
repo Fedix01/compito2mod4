@@ -96,9 +96,8 @@ export default function CommentArea(props) {
         }
     }
 
-    function putForm(id) {
+    function putForm() {
         setPut(true)
-        console.log(id)
     }
 
     async function putComment(e, input, num) {

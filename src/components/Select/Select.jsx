@@ -1,6 +1,7 @@
-import React, { useRef } from 'react'
+import React, { useContext, useRef } from 'react'
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import { ThemeContext } from '../ThemeContextProvider/ThemeContextProvider';
 export default function Select({ onGenreChange }) {
     const inputRef = useRef(null);
 
@@ -9,9 +10,11 @@ export default function Select({ onGenreChange }) {
         console.log(selectedValue);
         onGenreChange(selectedValue);
     }
+
+    const { theme } = useContext(ThemeContext)
     return (
         <>
-            <div className='d-flex justify-content-around' style={{ backgroundColor: "#212529", padding: "30px" }}>
+            <div className={theme === "dark" ? "d-flex justify-content-around bg-dark" : "d-flex justify-content-around bg-light"} style={{ backgroundColor: "#212529", padding: "30px" }}>
                 <Form.Select aria-label="Default select example" ref={inputRef} style={{ width: "300px" }}>
                     <option value="horror">Horror</option>
                     <option value="fantasy">Fantasy</option>
