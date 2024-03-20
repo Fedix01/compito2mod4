@@ -3,6 +3,7 @@ import CommentList from '../CommentList/CommentList';
 import AddComment from '../AddComment/AddComment';
 import Spinner from 'react-bootstrap/Spinner';
 import ModifyComment from '../ModifyComment/ModifyComment';
+import Alert from 'react-bootstrap/Alert';
 
 export default function CommentArea(props) {
 
@@ -21,6 +22,12 @@ export default function CommentArea(props) {
 
     const [commentId, setCommentId] = useState("")
 
+    // Old comment in modify comment form
+    const [modify, setModify] = useState("");
+
+    const [alert, setAlert] = useState(null)
+
+    const [err, setErr] = useState(false)
 
     async function handleData() {
         setSpinner(true)
@@ -67,9 +74,17 @@ export default function CommentArea(props) {
                 body: JSON.stringify(payload)
             })
             if (post.ok) {
-                handleData()
+                handleData();
+                setAlert("postOk");
+                setTimeout(() => {
+                    setAlert(null);
+                }, 5000);
             } else {
                 console.log("Errore nella richiesta POST")
+                setErr(true);
+                setTimeout(() => {
+                    setErr(false);
+                }, 5000);
             }
         } catch (error) {
             console.error(error)
@@ -88,16 +103,25 @@ export default function CommentArea(props) {
             });
             if (response.ok) {
                 handleData()
+                setAlert("postDel");
+                setTimeout(() => {
+                    setAlert(null);
+                }, 5000);
             } else {
-                console.log("Errore nella chimata DELETE")
+                console.log("Errore nella chimata DELETE");
+                setErr(true);
+                setTimeout(() => {
+                    setErr(false);
+                }, 5000);
             }
         } catch (error) {
             console.error(error)
         }
     }
 
-    function putForm() {
+    function putForm(commenti) {
         setPut(true)
+        setModify(commenti)
     }
 
     async function putComment(e, input, num) {
@@ -123,9 +147,17 @@ export default function CommentArea(props) {
             if (response.ok) {
                 handleData()
                 setPut(false)
+                setAlert("postPut");
+                setTimeout(() => {
+                    setAlert(null);
+                }, 5000);
             } else {
                 console.log("Errore nella chimata PUT")
-                setPut(false)
+                setPut(false);
+                setErr(true);
+                setTimeout(() => {
+                    setErr(false);
+                }, 5000);
             }
         } catch (error) {
             console.error(error)
@@ -141,8 +173,22 @@ export default function CommentArea(props) {
                     data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} Id={commentId} setId={setCommentId} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
             </div>
             <div>
-                {put ? <ModifyComment id={id} onclick={setPut} putComment={putComment} /> :
+                {put ? <ModifyComment id={id} oldComment={modify} onclick={setPut} putComment={putComment} /> :
                     data && <AddComment id={id} postComment={postComment} />}
+            </div>
+            <div>
+                {alert === "postOk" ? <Alert variant="success" className='mt-2'>
+                    Commento postato con successo!
+                </Alert> : null}
+                {alert === "postDel" ? <Alert variant="danger" className='mt-2'>
+                    Commento eliminato con successo!
+                </Alert> : null}
+                {alert === "postPut" ? <Alert variant="primary" className='mt-2'>
+                    Commento modificato con successo!
+                </Alert> : null}
+                {err && <Alert variant="warning" className='mt-2'>
+                    Errore nel caricamento del commento
+                </Alert>}
             </div>
         </div>
 
