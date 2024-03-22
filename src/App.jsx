@@ -12,6 +12,7 @@ import romanceData from "./data/romance.json";
 
 import Select from './components/Select/Select';
 import ThemeContextProvider from './components/ThemeContextProvider/ThemeContextProvider';
+import SelectContextProvider from './components/SelectedContextProvider/SelectContextProvider';
 function App() {
   const [selectedGenre, setSelectedGenre] = useState("horror")
   let selectedData = horrorData;
@@ -40,7 +41,9 @@ function App() {
         <MyNavbar input={inputName} setInput={setInputName} />
         <Welcome />
         <Select onGenreChange={handleGenreChange} />
-        <AllTheBooks books={selectedData} input={inputName} />
+        <SelectContextProvider >
+          <AllTheBooks books={selectedData} input={inputName} />
+        </SelectContextProvider>
         <MyFooter />
       </ThemeContextProvider>
     </>

@@ -1,13 +1,16 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import CommentList from '../CommentList/CommentList';
 import AddComment from '../AddComment/AddComment';
 import Spinner from 'react-bootstrap/Spinner';
 import ModifyComment from '../ModifyComment/ModifyComment';
 import Alert from 'react-bootstrap/Alert';
+import { ThemeContext } from '../ThemeContextProvider/ThemeContextProvider';
 
 export default function CommentArea(props) {
 
     const { id } = props;
+
+    const { theme } = useContext(ThemeContext)
 
     const endpointGET = `https://striveschool-api.herokuapp.com/api/books/${id}/comments/`;
     const endpointPOST = "https://striveschool-api.herokuapp.com/api/comments";
@@ -55,6 +58,11 @@ export default function CommentArea(props) {
 
         }
     }, [])
+
+    useEffect(() => {
+        console.log(id + " è cambiato")
+    }, [id])
+
 
     async function postComment(e, input, num) {
         e.preventDefault();
@@ -165,7 +173,7 @@ export default function CommentArea(props) {
     }
 
     return (
-        <div>
+        <div className={theme === "dark" ? "text-light" : ""}>
             <div>{spinner ? <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner> : ""}
