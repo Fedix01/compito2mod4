@@ -61,6 +61,7 @@ export default function CommentArea(props) {
 
     useEffect(() => {
         console.log(id + " è cambiato")
+        handleData()
     }, [id])
 
 

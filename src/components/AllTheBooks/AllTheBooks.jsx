@@ -34,7 +34,7 @@ export default function AllTheBooks(props) {
                             </Row>
                         </Col>
                         <Col md={4}>
-                            <div style={{ position: "sticky", top: "100px" }}>
+                            <div style={{ position: "sticky", top: "100px" }} className='ms-5'>
                                 <h2 className={theme === "dark" ? 'text-light' : ''}>Tutti i commenti</h2>
                                 <div>{selected &&
                                     <CommentArea id={selected} />}
