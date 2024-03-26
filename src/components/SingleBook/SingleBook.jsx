@@ -5,18 +5,24 @@ import Col from 'react-bootstrap/Col';
 import "./SingleBook.css";
 import { ThemeContext } from '../ThemeContextProvider/ThemeContextProvider';
 import { SelectedContext } from '../SelectedContextProvider/SelectContextProvider';
+import { useNavigate } from 'react-router-dom';
 
 
 export default function SingleBook(props) {
     const { asin, title, img, price, category } = props;
 
+    const navigate = useNavigate();
+
+    const handleNavigate = () => {
+        navigate("/details/" + asin)
+    }
 
     const { selected, setSelected } = useContext(SelectedContext)
 
     const { theme } = useContext(ThemeContext)
 
     useEffect(() => {
-        console.log(selected)
+
     }, [selected])
 
     return (
@@ -34,7 +40,7 @@ export default function SingleBook(props) {
                             {category}
                         </div>
                         {(selected === asin) ? <Button className='mt-2' variant="warning" onClick={() => setSelected("")}>Chiudi</Button> : <Button variant="warning" onClick={() => setSelected(asin)}>Commenta</Button>}
-
+                        <Button variant="primary" onClick={handleNavigate}>Dettagli</Button>
                     </Card.Body>
                 </Card>
             </Col>
