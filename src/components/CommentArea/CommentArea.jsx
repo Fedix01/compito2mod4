@@ -178,8 +178,14 @@ export default function CommentArea(props) {
             <div>{spinner ? <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner> : ""}
-                {data &&
-                    data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} Id={commentId} setId={setCommentId} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
+                <div style={{
+                    height: "300px",
+                    overflowY: "scroll",
+                    scrollbarColor: theme === "dark" ? "white #212529" : "#212529 lightgray"
+                }}>
+                    {data &&
+                        data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} Id={commentId} setId={setCommentId} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
+                </div>
             </div>
             <div>
                 {put ? <ModifyComment id={id} oldComment={modify} onclick={setPut} putComment={putComment} /> :
@@ -199,7 +205,7 @@ export default function CommentArea(props) {
                     Errore nel caricamento del commento
                 </Alert>}
             </div>
-        </div>
+        </div >
 
     )
 }

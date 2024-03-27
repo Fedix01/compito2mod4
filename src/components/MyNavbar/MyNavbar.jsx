@@ -11,7 +11,7 @@ import { IoSunny } from "react-icons/io5";
 
 export default function MyNavbar(props) {
 
-    const { setInput } = props;
+    const { setInput, navForm } = props;
 
     const [search, setSearch] = useState("");
 
@@ -28,13 +28,15 @@ export default function MyNavbar(props) {
                 </Nav>
                 <div className='me-5' style={{ cursor: "pointer" }} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                     {theme === "dark" ? <IoSunny style={{ color: "white", fontSize: "40px" }} /> : <MdModeNight style={{ color: "black", fontSize: "40px" }} />}</div>
-                <Form className='my-3 d-flex justify-content-around'>
-                    <Form.Control type="text" placeholder="Inserisci il titolo" onChange={(e) => setSearch(e.target.value)}
-                        style={{ width: "50%" }} />
-                    <Button variant="outline-primary" size="lg" onClick={() => setInput(search)}>
-                        Cerca per titolo
-                    </Button>
-                </Form>
+                {navForm &&
+                    <Form className='my-3 d-flex justify-content-around'>
+                        <Form.Control type="text" placeholder="Inserisci il titolo" onChange={(e) => setSearch(e.target.value)}
+                            style={{ width: "50%" }} />
+                        <Button variant="outline-primary" size="lg" onClick={() => setInput(search)}>
+                            Cerca per titolo
+                        </Button>
+                    </Form>}
+
             </Container>
         </Navbar>
     )

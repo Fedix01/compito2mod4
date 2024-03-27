@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Select from '../Select/Select';
 import MyNavbar from '../MyNavbar/MyNavbar';
 import Welcome from '../Welcome/Welcome';
 import MyFooter from '../MyFooter/MyFooter';
-import ThemeContextProvider from '../ThemeContextProvider/ThemeContextProvider';
 import SelectContextProvider from '../SelectedContextProvider/SelectContextProvider';
 
 import horrorData from '../../data/horror.json';
@@ -14,7 +13,9 @@ import romanceData from "../../data/romance.json";
 
 import AllTheBooks from '../AllTheBooks/AllTheBooks';
 
-export default function AllTheBooksPage() {
+export default function AllTheBooksPage(props) {
+
+    const { navForm, navDetails } = props;
 
     const [selectedGenre, setSelectedGenre] = useState("horror")
     let selectedData = horrorData;
@@ -35,19 +36,21 @@ export default function AllTheBooksPage() {
 
     const [inputName, setInputName] = useState("");
 
+    useEffect(() => {
+
+        navDetails(true)
+    }, [navForm])
 
 
     return (
         <>
-            <ThemeContextProvider>
-                <MyNavbar input={inputName} setInput={setInputName} />
-                <Welcome />
-                <Select onGenreChange={handleGenreChange} />
-                <SelectContextProvider >
-                    <AllTheBooks books={selectedData} input={inputName} />
-                </SelectContextProvider>
-                <MyFooter />
-            </ThemeContextProvider>
+            <MyNavbar input={inputName} setInput={setInputName} navForm={navForm} />
+            <Welcome />
+            <Select onGenreChange={handleGenreChange} />
+            <SelectContextProvider >
+                <AllTheBooks books={selectedData} input={inputName} />
+            </SelectContextProvider>
+            <MyFooter />
         </>
     )
 }
