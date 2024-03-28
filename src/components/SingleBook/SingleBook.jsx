@@ -39,8 +39,10 @@ export default function SingleBook(props) {
                             <br />
                             {category}
                         </div>
-                        {(selected === asin) ? <Button className='mt-2' variant="warning" onClick={() => setSelected("")}>Chiudi</Button> : <Button variant="warning" onClick={() => setSelected(asin)}>Commenta</Button>}
-                        <Button variant="primary" onClick={handleNavigate}>Dettagli</Button>
+                        <div className='mt-2'>
+                            {(selected === asin) ? <Button variant="warning" onClick={() => setSelected("")}>Chiudi</Button> : <Button variant="warning" onClick={() => setSelected(asin)}>Commenta</Button>}
+                            <Button className='ms-2' variant="primary" onClick={handleNavigate}>Dettagli</Button>
+                        </div>
                     </Card.Body>
                 </Card>
             </Col>

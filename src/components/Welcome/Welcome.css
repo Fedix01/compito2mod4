@@ -12,3 +12,13 @@
     color: white;
     font-size: 30px;
 }
+
+@media screen and (max-width: 768px) {
+    .hero-text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 3;
+        line-clamp: 3;
+        overflow: hidden;
+    }
+}
