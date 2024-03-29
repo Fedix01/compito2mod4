@@ -10,3 +10,10 @@
     line-clamp: 2;
     -webkit-box-orient: vertical;
 }
+
+.alert {
+
+    position: sticky;
+    top: 80px;
+    z-index: 1
+}

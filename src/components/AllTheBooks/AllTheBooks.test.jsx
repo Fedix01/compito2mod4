@@ -1,21 +1,26 @@
-import { findByTestId, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import AllTheBooks from "./AllTheBooks";
+import SelectContextProvider from "../SelectedContextProvider/SelectContextProvider";
 import { BrowserRouter } from "react-router-dom";
 import ThemeContextProvider from "../ThemeContextProvider/ThemeContextProvider";
-import SelectContextProvider from "../SelectedContextProvider/SelectContextProvider";
+import horrorData from '../../data/horror.json';
 
-// test("al click commenta vengono renderizzati i commenti relativi al libro", async () => {
-//     render(
-//         <BrowserRouter>
-//             <ThemeContextProvider>
-//                 <SelectContextProvider>
-//                     <AllTheBooks />
-//                 </SelectContextProvider>
-//             </ThemeContextProvider>
-//         </BrowserRouter>
-//     );
 
-//     const singleBook = await screen.findByTestId("test-cards")
+test("cards renderizzate = json", async () => {
+    render(
+        <BrowserRouter>
+            <ThemeContextProvider>
+                <SelectContextProvider>
+                    <AllTheBooks />
+                </SelectContextProvider>
+            </ThemeContextProvider>
+        </BrowserRouter>
+    );
 
-//     expect(singleBook).toBeInTheDocument();
-// })
+    const cards = await screen.findAllByTestId("card-book");
+
+    const json = horrorData.length;
+
+    expect(json).toBeGreaterThanOrEqual(150);
+    expect(cards.length).toBeGreaterThanOrEqual(json);
+})

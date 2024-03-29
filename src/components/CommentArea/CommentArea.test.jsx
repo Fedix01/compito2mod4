@@ -20,7 +20,7 @@ test("prova commentArea", async () => {
     expect(elements.length).toBeGreaterThan(0);
 });
 
-test("test se ce commentarea", () => {
+test("test se ce commentArea al caricamento del componente", () => {
     render(
         <BrowserRouter>
             <ThemeContextProvider>
@@ -35,7 +35,5 @@ test("test se ce commentarea", () => {
     const element = screen.queryByTestId("lista");
 
     expect(element).not.toBeInTheDocument();
-
-
 
 })

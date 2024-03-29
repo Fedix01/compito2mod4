@@ -3,8 +3,7 @@ import { Button, Container } from 'react-bootstrap';
 
 export default function SingleCartItem(props) {
 
-    const { title, img, handleRemove, item } = props;
-
+    const { title, img, price, handleRemove, item } = props;
 
     return (
         <Container>
@@ -12,13 +11,15 @@ export default function SingleCartItem(props) {
                 <div>
                     <img src={img} alt="Foto Libro" style={{ height: "200px" }} />
                 </div>
-                <div>
+                <div className='ms-3'>
                     <h2>{title}</h2>
+                    <p>{price}€</p>
                 </div>
-                <div>
+                <div className='ms-3'>
                     <Button variant='danger' onClick={() => handleRemove(item)}>Elimina</Button>
                 </div>
             </div>
+
         </Container>
     )
 }

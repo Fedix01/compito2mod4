@@ -6,7 +6,7 @@ import ThemeContextProvider from "../ThemeContextProvider/ThemeContextProvider";
 import horrorData from '../../data/horror.json';
 
 
-test("prova selected", () => {
+test("prova selected non deve esserci", () => {
     render(
         <BrowserRouter>
             <ThemeContextProvider>
@@ -23,24 +23,7 @@ test("prova selected", () => {
     expect(selected).not.toHaveStyle("border: 2px solid red")
 })
 
-test("card = json", () => {
-    render(
-        <BrowserRouter>
-            <ThemeContextProvider>
-                <SelectContextProvider>
-                    <SingleBook />
-                </SelectContextProvider>
-            </ThemeContextProvider>
-        </BrowserRouter>
-    );
 
-    const cards = screen.findAllByTestId("test-cards");
-
-
-    const json = horrorData.length;
-
-    expect(json).toBeGreaterThanOrEqual(150)
-})
 
 test("seconda prova selected", () => {
     render(

@@ -34,7 +34,7 @@ export default function AllTheBooks(props) {
                         <Col md={8} >
                             <Row>
                                 {filteredBooks &&
-                                    filteredBooks.map((element) => <SingleBook key={element.asin} asin={element.asin} title={element.title} img={element.img} price={element.price} category={element.category} book={element} />)}
+                                    filteredBooks.map((element) => <SingleBook data-testid="card-book" key={element.asin} asin={element.asin} title={element.title} img={element.img} price={element.price} category={element.category} book={element} />)}
                             </Row>
                         </Col>
                         <Col md={4}>
