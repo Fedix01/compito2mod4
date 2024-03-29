@@ -174,7 +174,7 @@ export default function CommentArea(props) {
     }
 
     return (
-        <div className={theme === "dark" ? "text-light" : ""}>
+        <div data-testid="test-comment" className={theme === "dark" ? "text-light" : ""}>
             <div>{spinner ? <Spinner animation="border" role="status">
                 <span className="visually-hidden">Loading...</span>
             </Spinner> : ""}

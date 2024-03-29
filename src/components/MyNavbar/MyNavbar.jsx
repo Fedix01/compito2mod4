@@ -31,16 +31,16 @@ export default function MyNavbar(props) {
                 </Navbar.Brand>
                 <Nav className="me-auto">
                     <Nav.Link onClick={() => navigate("/")} style={{ cursor: "pointer" }}>Home</Nav.Link>
-                    <Nav.Link href="#features">About</Nav.Link>
+                    <Nav.Link onClick={() => navigate("/cart")}>Carrello</Nav.Link>
                     <Nav.Link href="#pricing">Browse</Nav.Link>
                 </Nav>
                 <div className='me-5' style={{ cursor: "pointer" }} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
                     {theme === "dark" ? <IoSunny style={{ color: "white", fontSize: "40px" }} /> : <MdModeNight style={{ color: "black", fontSize: "40px" }} />}</div>
                 {navForm &&
                     <Form className='my-3 d-flex justify-content-around form'>
-                        <Form.Control type="text" placeholder="Inserisci il titolo" onChange={(e) => setSearch(e.target.value)}
+                        <Form.Control data-testid="input-test" type="text" placeholder="Inserisci il titolo" onChange={(e) => setSearch(e.target.value)}
                             style={{ width: "50%" }} />
-                        <Button variant="outline-primary" size="lg" onClick={() => setInput(search)}>
+                        <Button data-testid="test-button" variant="outline-primary" size="lg" onClick={() => setInput(search)}>
                             Cerca per titolo
                         </Button>
                     </Form>}

@@ -19,8 +19,11 @@ export default function AllTheBooks(props) {
 
 
     useEffect(() => {
-        const filteredName = book.filter((book) => book.title.toLowerCase().includes(input.toLowerCase()));
-        setFilteredBooks(filteredName);
+        if (book) {
+            const filteredName = book.filter((book) => book.title.toLowerCase().includes(input.toLowerCase()));
+            setFilteredBooks(filteredName);
+        }
+
     }, [input, book]);
 
     return (
@@ -30,7 +33,8 @@ export default function AllTheBooks(props) {
                     <Row >
                         <Col md={8} >
                             <Row>
-                                {filteredBooks.map((element) => <SingleBook key={element.asin} asin={element.asin} title={element.title} img={element.img} price={element.price} category={element.category} />)}
+                                {filteredBooks &&
+                                    filteredBooks.map((element) => <SingleBook key={element.asin} asin={element.asin} title={element.title} img={element.img} price={element.price} category={element.category} book={element} />)}
                             </Row>
                         </Col>
                         <Col md={4}>

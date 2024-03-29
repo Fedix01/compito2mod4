@@ -13,7 +13,7 @@ export default function SingleComment(props) {
 
     return (
         <>
-            <li style={{ maxWidth: "7rem" }}>{commenti}</li >
+            <li data-testid="lista" style={{ maxWidth: "7rem" }}>{commenti}</li >
             <span className='ms-4' style={rate >= 3 ? { backgroundColor: "green", borderRadius: "10px" } : { backgroundColor: "red", borderRadius: "10px" }}>{`Voto ${rate}`}</span>
             <div>
                 <FaTrash onClick={() => deleteComment(commentId)} style={{ cursor: "pointer" }} />

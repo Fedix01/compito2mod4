@@ -50,21 +50,21 @@ export default function BookDetails(props) {
 
                             <div className={theme === "dark" ? "text-light" : null}>
                                 {book.map((el) => (
-                                    <>
+                                    <div key={el.asin}>
                                         <img src={el.img} alt="" width={"500px"} />
-                                    </>
+                                    </div>
                                 ))}
                             </div>
                         </Col>
                         <Col md={6}>
                             <div className={theme === "dark" ? "text-light" : null}>
                                 {book.map((el) => (
-                                    <>
+                                    <div key={el.asin}>
                                         <h2>{el.title}</h2>
                                         <h4 className='mt-3'>Categoria: {el.category}</h4>
                                         <p className='mt-3'>Prezzo: {el.price}€</p>
                                         <h2 style={{ marginTop: "5rem" }}>Tutti i commenti di {el.title}</h2>
-                                    </>
+                                    </div>
                                 ))}
                                 {book.map((el) => <CommentArea key={el.asin} id={el.asin} />)}
                             </div>
