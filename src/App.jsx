@@ -6,6 +6,7 @@ import ThemeContextProvider from "./components/ThemeContextProvider/ThemeContext
 import { useState } from "react";
 import AddToCart from "./components/AddToCart/AddToCart";
 import CartContextProvider from "./components/CartContextProvider/CartContextProvider";
+import AlertCartProvider from "./components/AlertCartProvider/AlertCartProvider";
 
 
 function App() {
@@ -17,14 +18,16 @@ function App() {
     <>
       <ThemeContextProvider>
         <CartContextProvider>
-          <BrowserRouter>
-            <Routes>
-              <Route path="/" element={<AllTheBooksPage navForm={isDetails} navDetails={setIsDetails} />}></Route>
-              <Route path="/*" element={<NotFound />}></Route>
-              <Route path="/details/:asin" element={<BookDetails navDetails={setIsDetails} navForm={isDetails} />}></Route>
-              <Route path="/cart" element={<AddToCart />}></Route>
-            </Routes>
-          </BrowserRouter>
+          <AlertCartProvider>
+            <BrowserRouter>
+              <Routes>
+                <Route path="/" element={<AllTheBooksPage navForm={isDetails} navDetails={setIsDetails} />}></Route>
+                <Route path="/*" element={<NotFound />}></Route>
+                <Route path="/details/:asin" element={<BookDetails navDetails={setIsDetails} navForm={isDetails} />}></Route>
+                <Route path="/cart" element={<AddToCart />}></Route>
+              </Routes>
+            </BrowserRouter>
+          </AlertCartProvider>
         </CartContextProvider>
       </ThemeContextProvider>
     </>

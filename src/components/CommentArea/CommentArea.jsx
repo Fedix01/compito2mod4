@@ -38,7 +38,7 @@ export default function CommentArea(props) {
         try {
             const response = await fetch(endpointGET, {
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTA1MzA0MzEsImV4cCI6MTcxMTc0MDAzMX0.ALisovWy5c9k5JT2NbrK8WGAvsVO4JWFd2lnGN3bnc8"
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
                 }
             });
             if (response.ok) {
@@ -78,7 +78,7 @@ export default function CommentArea(props) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTA1MzA0MzEsImV4cCI6MTcxMTc0MDAzMX0.ALisovWy5c9k5JT2NbrK8WGAvsVO4JWFd2lnGN3bnc8"
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
                 },
                 body: JSON.stringify(payload)
             })
@@ -107,7 +107,7 @@ export default function CommentArea(props) {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTA1MzA0MzEsImV4cCI6MTcxMTc0MDAzMX0.ALisovWy5c9k5JT2NbrK8WGAvsVO4JWFd2lnGN3bnc8"
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
                 }
             });
             if (response.ok) {
@@ -147,7 +147,7 @@ export default function CommentArea(props) {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTA1MzA0MzEsImV4cCI6MTcxMTc0MDAzMX0.ALisovWy5c9k5JT2NbrK8WGAvsVO4JWFd2lnGN3bnc8"
+                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
                 },
                 body: JSON.stringify(payload)
             })

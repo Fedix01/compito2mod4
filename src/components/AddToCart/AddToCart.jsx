@@ -18,9 +18,23 @@ export default function AddToCart() {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
+
+    useEffect(() => {
+
+        const dataLocal = localStorage.getItem("cart")
+        if (dataLocal) {
+            setCart(JSON.parse(dataLocal))
+        }
+    }, [])
+
+
     useEffect(() => {
         console.log(cart, "è cambiato")
+        if (cart && Object.keys(cart).length > 0) {
+            localStorage.setItem("cart", JSON.stringify(cart));
+        }
     }, [cart])
+
 
     const handleRemove = (item) => {
         console.log(item)
@@ -54,13 +68,14 @@ export default function AddToCart() {
                         Elemento eliminato : {alert}
                     </Alert>}
                 <div>
-                    {cart &&
-                        cart.map((el) => <SingleCartItem key={el.asin} title={el.title} img={el.img} price={el.price} handleRemove={handleRemove} totalPrice={totalPrice} item={el} />)}
+                    <div className='main'>
+                        <Container className='mt-4'>
+                            <h3>{totalPrice > 0 ? `Il totale del carrello è: ${totalPrice}€` : "Il carrello è vuoto"}</h3>
+                        </Container>
+                        {cart &&
+                            cart.map((el) => <SingleCartItem key={el.asin} title={el.title} img={el.img} price={el.price} handleRemove={handleRemove} totalPrice={totalPrice} item={el} />)}
+                    </div>
                 </div>
-                <Container className='mt-4'>
-                    <h3>{totalPrice > 0 ? `Il totale del carrello è: ${totalPrice}€` : "Il carrello è vuoto"}</h3>
-                </Container>
-
                 <div className='footer'>
                     <MyFooter />
                 </div>

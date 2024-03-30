@@ -63,7 +63,7 @@ export default function BookDetails(props) {
                                         <h2>{el.title}</h2>
                                         <h4 className='mt-3'>Categoria: {el.category}</h4>
                                         <p className='mt-3'>Prezzo: {el.price}€</p>
-                                        <h2 style={{ marginTop: "5rem" }}>Tutti i commenti di {el.title}</h2>
+                                        <h2 style={{ marginTop: "5rem" }}>Tutti i commenti:</h2>
                                     </div>
                                 ))}
                                 {book.map((el) => <CommentArea key={el.asin} id={el.asin} />)}

@@ -6,6 +6,7 @@ import { ThemeContext } from '../ThemeContextProvider/ThemeContextProvider';
 import { Col } from 'react-bootstrap';
 import CommentArea from '../CommentArea/CommentArea';
 import { SelectedContext } from '../SelectedContextProvider/SelectContextProvider';
+import { AlertCartContext } from '../AlertCartProvider/AlertCartProvider';
 export default function AllTheBooks(props) {
 
     const { theme } = useContext(ThemeContext);

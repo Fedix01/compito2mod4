@@ -9,3 +9,7 @@
     top: 80px;
     z-index: 1
 }
+
+.main {
+    min-height: 500px;
+}

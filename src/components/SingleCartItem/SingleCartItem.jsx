@@ -7,13 +7,14 @@ export default function SingleCartItem(props) {
 
     return (
         <Container>
-            <div className='d-flex align-items-center'>
+            <div className='d-flex align-items-center justify-content-between mt-3'>
                 <div>
+
                     <img src={img} alt="Foto Libro" style={{ height: "200px" }} />
-                </div>
-                <div className='ms-3'>
-                    <h2>{title}</h2>
-                    <p>{price}€</p>
+
+                    <span className='ms-3' style={{ fontSize: "25px" }}>{title}</span>
+                    <span className='ms-3' style={{ fontSize: "25px" }}>{price}€</span>
+
                 </div>
                 <div className='ms-3'>
                     <Button variant='danger' onClick={() => handleRemove(item)}>Elimina</Button>

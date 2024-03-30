@@ -7,7 +7,7 @@ import { ThemeContext } from '../ThemeContextProvider/ThemeContextProvider';
 import { SelectedContext } from '../SelectedContextProvider/SelectContextProvider';
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../CartContextProvider/CartContextProvider';
-import Alert from 'react-bootstrap/Alert';
+import { AlertCartContext } from '../AlertCartProvider/AlertCartProvider';
 
 
 export default function SingleBook(props) {
@@ -19,7 +19,7 @@ export default function SingleBook(props) {
         navigate("/details/" + asin)
     }
 
-    const [alert, setAlert] = useState(false);
+    const { alert, setAlert } = useContext(AlertCartContext);
 
     const { selected, setSelected } = useContext(SelectedContext);
 
@@ -43,10 +43,7 @@ export default function SingleBook(props) {
 
     return (
         <>
-            {alert &&
-                <Alert className='alert' variant='success'>
-                    Libro aggiunto al carrello
-                </Alert>}
+
             <Col md={6} sm={6}>
 
                 <div id={asin}>
@@ -57,7 +54,7 @@ export default function SingleBook(props) {
                             <Card.Title className="card-title">{title}</Card.Title>
 
                             <div>
-                                ${price}
+                                {price}€
                                 <br />
                                 {category}
                             </div>
