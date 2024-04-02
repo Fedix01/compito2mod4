@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
@@ -8,6 +8,7 @@ import { SelectedContext } from '../SelectedContextProvider/SelectContextProvide
 import { useNavigate } from 'react-router-dom';
 import { CartContext } from '../CartContextProvider/CartContextProvider';
 import { AlertCartContext } from '../AlertCartProvider/AlertCartProvider';
+import { CartCounterContext } from '../CartCounterContextProvider/CartCounterContextProvider';
 
 
 export default function SingleBook(props) {
@@ -19,31 +20,34 @@ export default function SingleBook(props) {
         navigate("/details/" + asin)
     }
 
-    const { alert, setAlert } = useContext(AlertCartContext);
+    const { setAlert } = useContext(AlertCartContext);
 
     const { selected, setSelected } = useContext(SelectedContext);
 
     const { cart, setCart } = useContext(CartContext);
 
+    const { setCount } = useContext(CartCounterContext);
+
     const addToCart = (book) => {
         console.log(book);
+        setCount((prevState) => prevState + 1)
         const index = cart.findIndex((item) => item.asin === book.asin);
         if (index !== -1) {
             const updateCartItems = [...cart];
             updateCartItems[index].quantity += 1;
             setCart(updateCartItems);
+            setAlert(true);
             setTimeout(() => {
                 setAlert(false)
             }, 4000);
-            setAlert(!alert);
 
         } else {
             const newItem = { ...book, quantity: 1 };
             setCart([...cart, newItem]);
+            setAlert(true);
             setTimeout(() => {
                 setAlert(false)
             }, 4000);
-            setAlert(!alert);
         }
     }
 
@@ -75,7 +79,7 @@ export default function SingleBook(props) {
                             <div className='mt-2'>
                                 {(selected === asin) ? <Button variant="warning" onClick={() => setSelected("")}>Chiudi</Button> : <Button data-testid="test-comment" variant="warning" onClick={() => setSelected(asin)}>Commenta</Button>}
                                 <Button className='ms-2' variant="primary" onClick={handleNavigate}>Dettagli</Button>
-                                <Button className='ms-2' variant="success" onClick={() => addToCart(book)}>Aggiungi</Button>
+                                <Button className='ms-2' variant="success" onClick={() => addToCart(book)}>Aggiungi al Carrello</Button>
                             </div>
                         </Card.Body>
                     </Card>

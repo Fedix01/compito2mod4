@@ -4,3 +4,19 @@
     }
 
 }
+
+.container-cart {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: red;
+}
+
+.cart-items {
+    color: white;
+
+}
+
+.form-check-input {
+    cursor: pointer;
+}

@@ -18,13 +18,17 @@ export default function AddComment(props) {
 
     return (
         <div>
-            <h6>Lascia un commento...</h6>
-            <Form.Control as="textarea" aria-label="With textarea" type="text" placeholder="Scrivi un commento..." value={input} onChange={(e) => setInput(e.target.value)} />
-            <h6>Valutazione...</h6>
-            <div className='d-flex align-items-center justify-content-between'>
-                <Form.Control type="number" min={1} max={5} value={num} onChange={(e) => setNum(e.target.value)} placeholder="Inserisci Voto" style={{ width: "70%" }} required />
-                <Button variant="success" type='submit' onClick={(e) => resetFormAndPost(e, input, num)}>Commenta</Button>
-            </div>
+            <Form>
+                <Form.Label>Lascia un commento...</Form.Label>
+                <Form.Control as="textarea" aria-label="With textarea" type="text" placeholder="Scrivi un commento..." value={input} onChange={(e) => setInput(e.target.value)} />
+            </Form>
+            <Form className='mt-2'>
+                <Form.Label>Valutazione...</Form.Label>
+                <div className='d-flex align-items-center justify-content-between'>
+                    <Form.Control type="number" min={1} max={5} value={num} onChange={(e) => setNum(e.target.value)} placeholder="Inserisci Voto" style={{ width: "70%" }} required />
+                    <Button variant="success" type='submit' onClick={(e) => resetFormAndPost(e, input, num)}>Commenta</Button>
+                </div>
+            </Form>
         </div>
     )
 }

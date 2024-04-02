@@ -87,13 +87,13 @@ export default function CommentArea(props) {
                 setAlert("postOk");
                 setTimeout(() => {
                     setAlert(null);
-                }, 5000);
+                }, 4000);
             } else {
                 console.log("Errore nella richiesta POST")
                 setErr(true);
                 setTimeout(() => {
                     setErr(false);
-                }, 5000);
+                }, 4000);
             }
         } catch (error) {
             console.error(error)
@@ -115,13 +115,13 @@ export default function CommentArea(props) {
                 setAlert("postDel");
                 setTimeout(() => {
                     setAlert(null);
-                }, 5000);
+                }, 4000);
             } else {
                 console.log("Errore nella chimata DELETE");
                 setErr(true);
                 setTimeout(() => {
                     setErr(false);
-                }, 5000);
+                }, 4000);
             }
         } catch (error) {
             console.error(error)
@@ -159,14 +159,14 @@ export default function CommentArea(props) {
                 setAlert("postPut");
                 setTimeout(() => {
                     setAlert(null);
-                }, 5000);
+                }, 4000);
             } else {
                 console.log("Errore nella chimata PUT")
                 setPut(false);
                 setErr(true);
                 setTimeout(() => {
                     setErr(false);
-                }, 5000);
+                }, 4000);
             }
         } catch (error) {
             console.error(error)

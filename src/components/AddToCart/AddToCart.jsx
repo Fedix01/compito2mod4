@@ -7,6 +7,7 @@ import Alert from 'react-bootstrap/Alert';
 import MyFooter from '../MyFooter/MyFooter';
 import "./AddToCart.css";
 import { Container } from 'react-bootstrap';
+import { CartCounterContext } from '../CartCounterContextProvider/CartCounterContextProvider';
 
 export default function AddToCart() {
 
@@ -18,6 +19,7 @@ export default function AddToCart() {
 
     const [totalPrice, setTotalPrice] = useState(0);
 
+    const { setCount } = useContext(CartCounterContext)
 
     useEffect(() => {
 
@@ -38,6 +40,7 @@ export default function AddToCart() {
 
     const handleRemove = (item) => {
         console.log(item)
+        setCount((prevState) => prevState - 1)
         if (item.quantity > 1) {
             const updatedCart = cart.map(cartItem => {
                 if (cartItem.asin === item.asin) {

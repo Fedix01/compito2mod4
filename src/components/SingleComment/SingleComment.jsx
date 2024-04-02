@@ -19,7 +19,7 @@ export default function SingleComment(props) {
                 <div className='d-flex align-items-center'>
                     <FaUser />
                     <div className='ms-3'>
-                        <li data-testid="lista" >{commenti}</li >
+                        <li data-testid="lista" style={{ maxWidth: "10rem" }}>{commenti}</li >
                         <span>{`Voto ${rate}`}</span>
                     </div>
                 </div>

@@ -13,6 +13,7 @@ import { IoSunny } from "react-icons/io5";
 import { IoBookSharp } from "react-icons/io5";
 import { useNavigate } from 'react-router-dom';
 import { AlertCartContext } from '../AlertCartProvider/AlertCartProvider';
+import { CartCounterContext } from '../CartCounterContextProvider/CartCounterContextProvider';
 
 export default function MyNavbar(props) {
 
@@ -23,7 +24,9 @@ export default function MyNavbar(props) {
     const { alert } = useContext(AlertCartContext);
 
 
-    const { theme, setTheme } = useContext(ThemeContext)
+    const { theme, setTheme } = useContext(ThemeContext);
+
+    const { count } = useContext(CartCounterContext)
 
     const navigate = useNavigate()
 
@@ -37,11 +40,25 @@ export default function MyNavbar(props) {
                     </Navbar.Brand>
                     <Nav className="me-auto">
                         <Nav.Link onClick={() => navigate("/")} style={{ cursor: "pointer" }}>Home</Nav.Link>
-                        <Nav.Link onClick={() => navigate("/cart")}>Carrello</Nav.Link>
-                        <Nav.Link href="#pricing">Browse</Nav.Link>
+                        <div className='d-flex justify-content-center align-items-center'>
+                            <Nav.Link onClick={() => navigate("/cart")}>Carrello</Nav.Link>
+                            {count > 0 &&
+                                <div className='container-cart d-flex justify-content-center align-items-center'>
+                                    <span className='cart-items'>{count}</span>
+                                </div>
+                            }
+                        </div>
                     </Nav>
-                    <div className='me-5' style={{ cursor: "pointer" }} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
-                        {theme === "dark" ? <IoSunny style={{ color: "white", fontSize: "40px" }} /> : <MdModeNight style={{ color: "black", fontSize: "40px" }} />}</div>
+
+                    <Form className='me-5 d-flex align-items-center justify-content-center'>
+                        <Form.Check className={theme === "dark" ? "text-light" : ""} style={{ cursor: "pointer" }} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+                            type="switch"
+                            id="custom-switch"
+                            label={theme === "dark" ? "Dark-Mode" : "Light-Mode"}
+                        />
+                        {theme === "dark" ? <MdModeNight className='ms-2' style={{ color: "white", fontSize: "40px" }} /> : <IoSunny className='ms-2' style={{ color: "black", fontSize: "40px" }} />}
+                    </Form>
+
                     {navForm &&
                         <Form className='my-3 d-flex justify-content-around form'>
                             <Form.Control data-testid="input-test" type="text" placeholder="Inserisci il titolo" onChange={(e) => setSearch(e.target.value)}
