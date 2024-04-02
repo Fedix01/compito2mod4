@@ -21,6 +21,8 @@ export default function AddToCart() {
 
     const { setCount } = useContext(CartCounterContext)
 
+    // Problemi col local storage
+
     useEffect(() => {
 
         const dataLocal = localStorage.getItem("cart")
@@ -32,7 +34,7 @@ export default function AddToCart() {
 
     useEffect(() => {
         console.log(cart, "è cambiato")
-        if (cart && Object.keys(cart).length > 0) {
+        if (cart && Object.keys(cart).length > 0 && localStorage.getItem("cart") !== JSON.stringify(cart)) {
             localStorage.setItem("cart", JSON.stringify(cart));
         }
     }, [cart])
