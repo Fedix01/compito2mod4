@@ -23,14 +23,28 @@ export default function SingleBook(props) {
 
     const { selected, setSelected } = useContext(SelectedContext);
 
-    const { setCart } = useContext(CartContext);
+    const { cart, setCart } = useContext(CartContext);
+
     const addToCart = (book) => {
         console.log(book);
-        setCart(prevCart => [...prevCart, book]);
-        setAlert(!alert);
-        setTimeout(() => {
-            setAlert(false)
-        }, 4000);
+        const index = cart.findIndex((item) => item.asin === book.asin);
+        if (index !== -1) {
+            const updateCartItems = [...cart];
+            updateCartItems[index].quantity += 1;
+            setCart(updateCartItems);
+            setTimeout(() => {
+                setAlert(false)
+            }, 4000);
+            setAlert(!alert);
+
+        } else {
+            const newItem = { ...book, quantity: 1 };
+            setCart([...cart, newItem]);
+            setTimeout(() => {
+                setAlert(false)
+            }, 4000);
+            setAlert(!alert);
+        }
     }
 
 

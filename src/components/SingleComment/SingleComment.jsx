@@ -1,6 +1,8 @@
 import React from 'react';
 import { FaTrash } from "react-icons/fa";
 import { FaPen } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
+import Button from 'react-bootstrap/Button';
 
 export default function SingleComment(props) {
 
@@ -13,11 +15,22 @@ export default function SingleComment(props) {
 
     return (
         <>
-            <li data-testid="lista" style={{ maxWidth: "7rem" }}>{commenti}</li >
-            <span className='ms-4' style={rate >= 3 ? { backgroundColor: "green", borderRadius: "10px" } : { backgroundColor: "red", borderRadius: "10px" }}>{`Voto ${rate}`}</span>
-            <div>
-                <FaTrash onClick={() => deleteComment(commentId)} style={{ cursor: "pointer" }} />
-                <FaPen onClick={() => handleId(commentId, commenti)} className='ms-3' style={{ cursor: "pointer" }} />
+            <div className='d-flex align-items-center justify-content-between'>
+                <div className='d-flex align-items-center'>
+                    <FaUser />
+                    <div className='ms-3'>
+                        <li data-testid="lista" >{commenti}</li >
+                        <span>{`Voto ${rate}`}</span>
+                    </div>
+                </div>
+                <div>
+                    <Button variant="danger" onClick={() => deleteComment(commentId)}>
+                        <FaTrash />
+                    </Button>
+                    <Button variant='primary' className='ms-2' onClick={() => handleId(commentId, commenti)}>
+                        <FaPen />
+                    </Button>
+                </div>
             </div>
         </>
     )

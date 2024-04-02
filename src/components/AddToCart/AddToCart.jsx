@@ -38,12 +38,22 @@ export default function AddToCart() {
 
     const handleRemove = (item) => {
         console.log(item)
-        const updateCart = cart.filter((el) => el.asin !== item.asin)
-        setCart(updateCart);
-        setAlert(item.title)
-        setTimeout(() => {
-            setAlert("")
-        }, 3000);
+        if (item.quantity > 1) {
+            const updatedCart = cart.map(cartItem => {
+                if (cartItem.asin === item.asin) {
+                    return { ...cartItem, quantity: cartItem.quantity - 1 };
+                }
+                return cartItem;
+            });
+            setCart(updatedCart);
+        } else {
+            const updateCart = cart.filter((el) => el.asin !== item.asin)
+            setCart(updateCart);
+            setAlert(item.title)
+            setTimeout(() => {
+                setAlert("")
+            }, 3000);
+        }
     }
 
     useEffect(() => {
@@ -54,7 +64,7 @@ export default function AddToCart() {
 
 
     const totalPriceItems = () => {
-        const calculate = cart.reduce((total, cartItem) => total + cartItem.price, 0);
+        const calculate = cart.reduce((total, cartItem) => total + (cartItem.price * cartItem.quantity), 0);
         const formattedTotal = parseFloat(calculate.toFixed(2));
         return formattedTotal
     }
@@ -73,7 +83,7 @@ export default function AddToCart() {
                             <h3>{totalPrice > 0 ? `Il totale del carrello è: ${totalPrice}€` : "Il carrello è vuoto"}</h3>
                         </Container>
                         {cart &&
-                            cart.map((el) => <SingleCartItem key={el.asin} title={el.title} img={el.img} price={el.price} handleRemove={handleRemove} totalPrice={totalPrice} item={el} />)}
+                            cart.map((el) => <SingleCartItem key={el.asin} title={el.title} img={el.img} price={el.price} quantity={el.quantity} handleRemove={handleRemove} totalPrice={totalPrice} setPrice={setTotalPrice} item={el} />)}
                     </div>
                 </div>
                 <div className='footer'>
