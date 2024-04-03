@@ -25,7 +25,7 @@ export default function AddComment(props) {
             <Form className='mt-2'>
                 <Form.Label>Valutazione...</Form.Label>
                 <div className='d-flex align-items-center justify-content-between'>
-                    <Form.Control type="number" min={1} max={5} value={num} onChange={(e) => setNum(e.target.value)} placeholder="Inserisci Voto" style={{ width: "70%" }} required />
+                    <Form.Control type="number" min={1} max={5} value={num} onChange={(e) => setNum(e.target.value)} placeholder="Inserisci Voto da 1 a 5" style={{ width: "70%" }} required />
                     <Button variant="success" type='submit' onClick={(e) => resetFormAndPost(e, input, num)}>Commenta</Button>
                 </div>
             </Form>

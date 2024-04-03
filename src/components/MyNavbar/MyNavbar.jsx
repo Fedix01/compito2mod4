@@ -32,14 +32,14 @@ export default function MyNavbar(props) {
 
     return (
         <>
-            <Navbar bg={theme} data-bs-theme={theme} style={{ position: "sticky", top: "0", zIndex: "1", height: "5rem" }}>
+            <Navbar bg={theme} data-bs-theme={theme} style={{ position: "sticky", top: "0", zIndex: "1", height: "5rem" }} expand="md">
                 <Container>
                     <Navbar.Brand onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
                         <IoBookSharp />
                         <span className='ms-2'>Epibooks Market</span>
                     </Navbar.Brand>
-                    <Nav className="me-auto">
-                        <Nav.Link onClick={() => navigate("/")} style={{ cursor: "pointer" }}>Home</Nav.Link>
+                    <Nav className="me-auto nav-items">
+                        <Nav.Link onClick={() => navigate("/")} style={{ cursor: "pointer" }} >Home</Nav.Link>
                         <div className='d-flex justify-content-center align-items-center'>
                             <Nav.Link onClick={() => navigate("/cart")}>Carrello</Nav.Link>
                             {count > 0 &&
@@ -48,9 +48,10 @@ export default function MyNavbar(props) {
                                 </div>
                             }
                         </div>
+                        <Nav.Link onClick={() => navigate("/browse")} style={{ cursor: "pointer" }} className='d-none d-md-flex'>Browse</Nav.Link>
                     </Nav>
 
-                    <Form className='me-5 d-flex align-items-center justify-content-center'>
+                    <Form className='me-5 d-flex align-items-center justify-content-center d-none d-md-flex'>
                         <Form.Check className={theme === "dark" ? "text-light" : ""} style={{ cursor: "pointer" }} onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
                             type="switch"
                             id="custom-switch"
@@ -72,7 +73,7 @@ export default function MyNavbar(props) {
             </Navbar >
             {alert &&
                 <Alert className='alert' variant='success'>
-                    Libro aggiunto al carrello
+                    Libro aggiunto al carrello: {alert}
                 </Alert>}
         </>
 

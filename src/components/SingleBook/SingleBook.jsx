@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext } from 'react'
 import { Button } from 'react-bootstrap';
 import { Card } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
@@ -18,7 +18,9 @@ export default function SingleBook(props) {
 
     const handleNavigate = () => {
         navigate("/details/" + asin)
-    }
+    };
+
+    const { theme } = useContext(ThemeContext);
 
     const { setAlert } = useContext(AlertCartContext);
 
@@ -36,28 +38,24 @@ export default function SingleBook(props) {
             const updateCartItems = [...cart];
             updateCartItems[index].quantity += 1;
             setCart(updateCartItems);
-            setAlert(true);
+            setAlert(book.title);
             setTimeout(() => {
-                setAlert(false)
+                setAlert("")
             }, 4000);
 
         } else {
             const newItem = { ...book, quantity: 1 };
             setCart([...cart, newItem]);
-            setAlert(true);
+            setAlert(book.title);
             setTimeout(() => {
-                setAlert(false)
+                setAlert("")
             }, 4000);
         }
     }
 
 
 
-    const { theme } = useContext(ThemeContext)
 
-    useEffect(() => {
-
-    }, [selected])
 
     return (
         <>

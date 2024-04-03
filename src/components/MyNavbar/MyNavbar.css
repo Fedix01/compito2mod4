@@ -3,6 +3,15 @@
         display: none !important;
     }
 
+    .nav-items {
+        display: -webkit-inline-box;
+    }
+
+    .nav-items a {
+        margin-right: 2rem;
+        margin-left: 1rem;
+    }
+
 }
 
 .container-cart {
