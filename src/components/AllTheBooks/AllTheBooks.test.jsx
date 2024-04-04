@@ -4,6 +4,7 @@ import SelectContextProvider from "../SelectedContextProvider/SelectContextProvi
 import { BrowserRouter } from "react-router-dom";
 import ThemeContextProvider from "../ThemeContextProvider/ThemeContextProvider";
 import horrorData from '../../data/horror.json';
+import AlertCartProvider from "../AlertCartProvider/AlertCartProvider";
 
 
 test("cards renderizzate = json", async () => {
@@ -11,7 +12,9 @@ test("cards renderizzate = json", async () => {
         <BrowserRouter>
             <ThemeContextProvider>
                 <SelectContextProvider>
-                    <AllTheBooks />
+                    <AlertCartProvider>
+                        <AllTheBooks />
+                    </AlertCartProvider>
                 </SelectContextProvider>
             </ThemeContextProvider>
         </BrowserRouter>
@@ -19,8 +22,15 @@ test("cards renderizzate = json", async () => {
 
     const cards = await screen.findAllByTestId("card-book");
 
-    const json = horrorData.length;
-
+    console.log("Numero di cards trovate:", cards.length);
+    if (cards.length > 0) {
+        cards.forEach(card => {
+            expect(card).toBeInTheDocument();
+        });
+    } else {
+        console.error("Nessuna card trovata nel DOM");
+    }
+    const json = horrorData.length
     expect(json).toBeGreaterThanOrEqual(150);
     expect(cards.length).toBeGreaterThanOrEqual(json);
 })

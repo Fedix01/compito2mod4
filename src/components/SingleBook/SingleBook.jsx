@@ -62,7 +62,7 @@ export default function SingleBook(props) {
 
             <Col md={6} sm={6}>
 
-                <div id={asin}>
+                <div id={asin} data-testid="card-book">
                     <Card data-testid="test-cards" className={theme === "dark" ? "card mt-3 bg-dark text-light" : "card mt-3 bg-light"} id={asin}
                         style={{ border: (selected === asin) ? "2px solid red" : "none" }}>
                         <Card.Img variant="top" className="card-img" src={img} />
@@ -75,7 +75,7 @@ export default function SingleBook(props) {
                                 {category}
                             </div>
                             <div className='mt-2'>
-                                {(selected === asin) ? <Button variant="warning" onClick={() => setSelected("")}>Chiudi</Button> : <Button data-testid="test-comment" variant="warning" onClick={() => setSelected(asin)}>Commenta</Button>}
+                                {(selected === asin) ? <Button variant="warning" onClick={() => setSelected("")} className='d-none d-md-inline'>Chiudi</Button> : <Button data-testid="test-comment" variant="warning" onClick={() => setSelected(asin)} className='d-none d-md-inline'>Commenta</Button>}
                                 <Button className='ms-2' variant="primary" onClick={handleNavigate}>Dettagli</Button>
                                 <Button className='ms-2' variant="success" onClick={() => addToCart(book)}>Aggiungi al Carrello</Button>
                             </div>

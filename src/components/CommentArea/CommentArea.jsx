@@ -183,8 +183,9 @@ export default function CommentArea(props) {
                     overflowY: "scroll",
                     scrollbarColor: theme === "dark" ? "white #212529" : "#212529 lightgray"
                 }}>
-                    {data &&
-                        data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} Id={commentId} setId={setCommentId} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)}
+                    {data.length > 0 ?
+                        data.map((el) => <CommentList deleteComment={deleteComment} key={el._id} Id={commentId} setId={setCommentId} commentId={el._id} comments={el.comment} rate={el.rate} putForm={putForm} />)
+                        : "Nessun commento, puoi commentare per primo!"}
                 </div>
             </div>
             <div>

@@ -51,7 +51,7 @@ export default function BookDetails(props) {
                             <div className={theme === "dark" ? "text-light" : null}>
                                 {book.map((el) => (
                                     <div key={el.asin}>
-                                        <img src={el.img} alt="" width={"500px"} className='container-fluid' />
+                                        <img src={el.img} alt="Immagine Libro" width={"500px"} className='img-fluid' />
                                     </div>
                                 ))}
                             </div>

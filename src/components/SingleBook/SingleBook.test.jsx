@@ -1,9 +1,9 @@
-import { render, screen, fireEvent, findByTestId } from "@testing-library/react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import SingleBook from "./SingleBook";
 import SelectContextProvider from "../SelectedContextProvider/SelectContextProvider";
 import { BrowserRouter } from "react-router-dom";
 import ThemeContextProvider from "../ThemeContextProvider/ThemeContextProvider";
-import horrorData from '../../data/horror.json';
+import AlertCartProvider from "../AlertCartProvider/AlertCartProvider";
 
 
 test("prova selected non deve esserci", () => {
@@ -11,7 +11,9 @@ test("prova selected non deve esserci", () => {
         <BrowserRouter>
             <ThemeContextProvider>
                 <SelectContextProvider>
-                    <SingleBook />
+                    <AlertCartProvider>
+                        <SingleBook />
+                    </AlertCartProvider>
                 </SelectContextProvider>
             </ThemeContextProvider>
         </BrowserRouter>
@@ -20,6 +22,7 @@ test("prova selected non deve esserci", () => {
 
     const selected = screen.getByTestId("test-cards");
 
+    expect(selected).toBeInTheDocument()
     expect(selected).not.toHaveStyle("border: 2px solid red")
 })
 
@@ -30,7 +33,9 @@ test("seconda prova selected", () => {
         <BrowserRouter>
             <ThemeContextProvider>
                 <SelectContextProvider>
-                    <SingleBook />
+                    <AlertCartProvider>
+                        <SingleBook />
+                    </AlertCartProvider>
                 </SelectContextProvider>
             </ThemeContextProvider>
         </BrowserRouter>
@@ -49,19 +54,3 @@ test("seconda prova selected", () => {
     expect(card).not.toHaveStyle("border: 2px solid red");
 })
 
-test("prova commentArea renderizzata!!", async () => {
-    // render(
-    //     <BrowserRouter>
-    //         <ThemeContextProvider>
-    //             <SelectContextProvider>
-    //                 <SingleBook />
-    //             </SelectContextProvider>
-    //         </ThemeContextProvider>
-    //     </BrowserRouter>
-
-    // );
-
-    // const singleBook = await screen.findAllByTestId("prova-test");
-
-    // expect(singleBook).toBeInTheDocument()
-})
