@@ -38,7 +38,7 @@ export default function CommentArea(props) {
         try {
             const response = await fetch(endpointGET, {
                 headers: {
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
+                    "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
                 }
             });
             if (response.ok) {
@@ -78,7 +78,7 @@ export default function CommentArea(props) {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
+                    "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
                 },
                 body: JSON.stringify(payload)
             })
@@ -107,7 +107,7 @@ export default function CommentArea(props) {
                 method: "DELETE",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
+                    "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
                 }
             });
             if (response.ok) {
@@ -147,7 +147,7 @@ export default function CommentArea(props) {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json",
-                    "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NWQ0ZDE0NzljNDM3MDAwMTkzYzM2ODIiLCJpYXQiOjE3MTE3OTI4NjEsImV4cCI6MTcxMzAwMjQ2MX0.ZlL7wcpXUaRjpkSWHqiWDpY9JeCb1tmZKYluXggfqYk"
+                    "Authorization": `Bearer ${process.env.REACT_APP_TOKEN}`
                 },
                 body: JSON.stringify(payload)
             })
